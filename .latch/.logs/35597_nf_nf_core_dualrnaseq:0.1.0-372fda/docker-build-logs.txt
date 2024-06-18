@@ -1,0 +1,195 @@
+Step 1/21 : from 812206152185.dkr.ecr.us-west-2.amazonaws.com/latch-base:fe0b-main
+
+
+ ---> f23c37efcd53
+
+Step 2/21 : workdir /tmp/docker-build/work/
+
+
+ ---> Using cache
+
+ ---> dd16c2d4f334
+
+Step 3/21 : shell [     "/usr/bin/env", "bash",     "-o", "errexit",     "-o", "pipefail",     "-o", "nounset",     "-o", "verbose",     "-o", "errtrace",     "-O", "inherit_errexit",     "-O", "shift_verbose",     "-c" ]
+
+
+ ---> Using cache
+
+ ---> aaada0c60239
+
+Step 4/21 : env TZ='Etc/UTC'
+
+
+ ---> Using cache
+
+ ---> d6869bc03deb
+
+Step 5/21 : env LANG='en_US.UTF-8'
+
+
+ ---> Using cache
+
+ ---> ae2f7ca65880
+
+Step 6/21 : arg DEBIAN_FRONTEND=noninteractive
+
+
+ ---> Using cache
+
+ ---> f029b3f36a86
+
+Step 7/21 : run pip install latch==2.46.6
+
+
+ ---> Using cache
+
+ ---> be1350f11537
+
+Step 8/21 : run mkdir /opt/latch
+
+
+ ---> Using cache
+
+ ---> e8dd4419614b
+
+Step 9/21 : run apt-get update && apt-get install -y default-jre-headless
+
+
+ ---> Using cache
+
+ ---> 447cbd90cbc9
+
+Step 10/21 : run apt-get update --yes &&     apt-get install --yes curl &&     curl         --location         --fail         --remote-name         https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh &&     `# Docs for -b and -p flags: https://docs.anaconda.com/anaconda/install/silent-mode/#linux-macos`     bash Mambaforge-Linux-x86_64.sh -b -p /opt/conda -u &&     rm Mambaforge-Linux-x86_64.sh
+
+
+ ---> Using cache
+
+ ---> ce8c8c6e21fb
+
+Step 11/21 : env PATH=/opt/conda/bin:$PATH
+
+
+ ---> Using cache
+
+ ---> fd6e954e3e6a
+
+Step 12/21 : RUN conda config --set auto_activate_base false
+
+
+ ---> Using cache
+
+ ---> 4ec3b6f2b8a8
+
+Step 13/21 : copy environment.yml /opt/latch/environment.yaml
+
+
+ ---> bef7ca424ff5
+
+Step 14/21 : run mamba env create     --file /opt/latch/environment.yaml     --name nf-core-dualrnaseq-1.0.0
+
+
+ ---> Running in 297b181aec3c
+
+[91mmamba env create     --file /opt/latch/environment.yaml     --name nf-core-dualrnaseq-1.0.0
+[0m
+Channels:
+ - conda-forge
+ - bioconda
+ - defaults
+Platform: linux-64
+Collecting package metadata (repodata.json): ...working... 
+done
+
+Solving environment: ...working... 
+done
+
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+    current version: 24.3.0
+    latest version: 24.5.0
+
+Please update conda by running
+
+    $ conda update -n base -c conda-forge conda
+
+
+[0m
+
+Downloading and Extracting Packages: ...working... done
+Preparing transaction: ...working... 
+done
+
+Verifying transaction: ...working... 
+done
+
+Executing transaction: ...working... 
+done
+
+#
+# To activate this environment, use
+#
+#     $ conda activate nf-core-dualrnaseq-1.0.0
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+
+ ---> b1a86ddc00e4
+
+Step 15/21 : env PATH=/opt/conda/envs/nf-core-dualrnaseq-1.0.0/bin:$PATH
+
+
+ ---> Running in bdd59afb0906
+
+ ---> 189b3e084a88
+
+Step 16/21 : copy . /root/
+
+
+ ---> e97fca350aea
+
+Step 17/21 : run ln -s /root/.latch/bin/nextflow /root/nextflow
+
+
+ ---> Running in 17ab891b30de
+
+[91mln -s /root/.latch/bin/nextflow /root/nextflow
+[0m
+ ---> 2777380a63f7
+
+Step 18/21 : run ln -s /root/.latch/.nextflow /root/.nextflow
+
+
+ ---> Running in db56c343ff8f
+
+[91mln -s /root/.latch/.nextflow /root/.nextflow
+[0m
+ ---> 1dc2a834460a
+
+Step 19/21 : arg tag
+
+
+ ---> Running in 087107d79a3e
+
+ ---> 7f97df068718
+
+Step 20/21 : env FLYTE_INTERNAL_IMAGE $tag
+
+
+ ---> Running in 4545b1292250
+
+ ---> 0a2f2b82eed6
+
+Step 21/21 : workdir /root
+
+
+ ---> Running in ed1011ba0e54
+
+ ---> bad24228bdb5
+
+Successfully built bad24228bdb5
+
+Successfully tagged 812206152185.dkr.ecr.us-west-2.amazonaws.com/35597_nf_nf_core_dualrnaseq:0.1.0-372fda
+
